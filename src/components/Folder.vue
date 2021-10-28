@@ -5,14 +5,13 @@
     </p>
     <ul class="tree-folder__content">
       <li v-for="(item, index) in contents" :key="index" v-show="visible">
-        <!-- Мне не нравится, что каждый элемент проверяется на isFolder, isFile, isLink -->
         <Folder
           v-if="isFolder(item)"
           :name="item.name"
           :contents="item.contents"
         />
-        <File v-if="isFile(item)" :name="item.name" />
-        <Link v-if="isLink(item)" :name="item.name" :target="item.target" />
+        <File v-else-if="isFile(item)" :name="item.name" />
+        <Link v-else :name="item.name" :target="item.target" />
       </li>
     </ul>
   </div>
